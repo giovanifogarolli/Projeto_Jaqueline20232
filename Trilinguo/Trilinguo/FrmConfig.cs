@@ -17,8 +17,19 @@ namespace Trilinguo
         public FrmConfig()
         {
             InitializeComponent();
-            rdbI.Checked = Program.cfgP.Us;
-            rdbJ.Checked = Program.cfgP.It;
+            switch (Program.cfgP.Lingua)
+            {
+                case 1:
+                    {
+                        rdbI.Checked = true;
+                        break;
+                    }
+                case 2:
+                    {
+                        rdbJ.Checked = true;
+                        break;
+                    }
+            }
             switch (Program.cfgP.Dificuldade)
             {
                 case 1:
@@ -41,14 +52,12 @@ namespace Trilinguo
 
         private void rdbI_CheckedChanged(object sender, EventArgs e)
         {
-            Program.cfgP.Us = rdbI.Checked;
-            Program.cfgP.It = rdbJ.Checked;
+            Program.cfgP.Lingua = 1;
         }
 
         private void rdbJ_CheckedChanged(object sender, EventArgs e)
         {
-            Program.cfgP.Us = rdbI.Checked;
-            Program.cfgP.It = rdbJ.Checked;
+            Program.cfgP.Lingua = 2;
         }
 
         private void rdbF_CheckedChanged(object sender, EventArgs e)
@@ -65,5 +74,6 @@ namespace Trilinguo
         {
             Program.cfgP.Dificuldade = 3;
         }
+
     }
 }

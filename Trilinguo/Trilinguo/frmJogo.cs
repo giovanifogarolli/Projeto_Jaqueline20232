@@ -10,7 +10,8 @@ namespace Trilinguo
         }
 
         cfg cfg = Program.cfgP;
-        per per = new per();
+        eng eng = new eng();
+        it it = new it();
         int[] jf = new int[5];
         int[] ji = new int[5];
         int Q = 0;
@@ -25,357 +26,177 @@ namespace Trilinguo
             else { return false; }
         } // Verificar se possui Dificuldade selecionada
 
-        private void Jogar()
+        private void Jogar(int D, int L)
         {
             Random P = new Random();
             Random M = new Random();
 
-            if (cfg.Us)
+            if (L == 1)
             {
-                switch (cfg.Dificuldade) // Dificuldade -> Case 1 - Facil |  Case 2 - Medio | Case 3 - Dificil
+                while(pgb.Value != 100)
                 {
-                    case 1:
+                    int Mg = M.Next(1, 3);
+                    int p = P.Next(5);
+                    ex.Text = "\n" + jf[0] + jf[1] + jf[2] + jf[3] + jf[4];
+                    if (Mg == 1)
+                    {
+                        f = true;
+                        lblQ.Text = "Traduza a frase";
+                        pictureBox3.Hide();
+                        while (jf.Contains(p + 1))
                         {
-                            while (pgb.Value != 100)
-                            {
-                                int Mg = M.Next(1, 3);
-                                int p = P.Next(5);
-                                ex.Text = "\n" + jf[0] + jf[1] + jf[2] + jf[3] + jf[4];
-                                if (Mg == 1)
-                                {
-                                    f = true;
-                                    pictureBox3.Hide();
-                                    while (jf.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        jf[p] = p + 1;
-                                        lblF.Show();
-                                        lblF.Text = per.Pergunta[p];
-                                        Q = p;
-                                    }
-                                    break;
-                                }
-                                if (Mg == 2)
-                                {
-                                    f = false;
-                                    lblF.Hide();
-                                    while (ji.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        ji[p] = p + 1;
-                                        pictureBox3.Show();
-                                        pictureBox3.Image = per.ImagemIT1[p];
-                                        Q = p;
-                                    }
-                                    break;
-                                }
-                            }
-                            if (pgb.Value == 100)
-                            {
-                                lblF.Hide();
-                                lblQ.Hide();
-                                txtbR.Hide();
-                                pictureBox3.Hide();
-
-                                pictureBox2.Show();
-                                pictureBox2.Image = Properties.Resources.duofeliz;
-                                btnM.Show();
-                                btnR.Show();
-                                pgb.Location = new Point(0, 0);
-                            }
-                            break;
+                            p = P.Next(5);
                         }
-                    case 2:
                         {
-                            while (pgb.Value != 100)
+                            jf[p] = p + 1;
+                            lblF.Show();
+                            switch (D)
                             {
-                                int Mg = M.Next(1, 3);
-                                int p = P.Next(5);
-                                ex.Text = "\n" + jf[0] + jf[1] + jf[2] + jf[3] + jf[4];
-                                if (Mg == 1)
-                                {
-                                    f = true;
-                                    pictureBox3.Hide();
-                                    while (jf.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        jf[p] = p + 1;
-                                        lblF.Show();
-                                        lblF.Text = per.Pergunta2[p];
-                                        Q = p;
-                                    }
+                                case 1:
+                                    lblF.Text = eng.Pergunta1[p];
                                     break;
-                                }
-                                if (Mg == 2)
-                                {
-                                    f = false;
-                                    lblF.Hide();
-                                    while (ji.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        ji[p] = p + 1;
-                                        pictureBox3.Show();
-                                        pictureBox3.Image = per.ImagemIT2[p];
-                                        Q = p;
-                                    }
+                                case 2:
+                                    lblF.Text = eng.Pergunta2[p];
                                     break;
-                                }
-                            }
-                            if (pgb.Value == 100)
-                            {
-                                lblF.Hide();
-                                lblQ.Hide();
-                                txtbR.Hide();
-                                pictureBox3.Hide();
+                                case 3:
+                                    lblF.Text = eng.Pergunta3[p];
+                                    break;
 
-                                pictureBox2.Show();
-                                pictureBox2.Image = Properties.Resources.duofeliz;
-                                btnM.Show();
-                                btnR.Show();
-                                pgb.Location = new Point(0, 0);
                             }
-                            break;
+                            
+                            Q = p;
                         }
-                    case 3:
+                        break;
+                    }
+                    if (Mg == 2)
+                    {
+                        f = false;
+                        lblQ.Text = "Escreva o nome do animal";
+                        lblF.Hide();
+                        while (ji.Contains(p + 1))
                         {
-                            while (pgb.Value != 100)
-                            {
-                                int Mg = M.Next(1, 3);
-                                int p = P.Next(5);
-                                ex.Text = "\n" + jf[0] + jf[1] + jf[2] + jf[3] + jf[4];
-                                if (Mg == 1)
-                                {
-                                    f = true;
-                                    pictureBox3.Hide();
-                                    while (jf.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        jf[p] = p + 1;
-                                        lblF.Show();
-                                        lblF.Text = per.Pergunta3[p];
-                                        Q = p;
-                                    }
-                                    break;
-                                }
-                                else
-                                {
-                                    f = false;
-                                    lblF.Hide();
-                                    while (ji.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        ji[p] = p + 1;
-                                        pictureBox3.Show();
-                                        pictureBox3.Image = per.ImagemIT3[p];
-                                        Q = p;
-                                    }
-                                    break;
-                                }
-                            }
-                            if (pgb.Value == 100)
-                            {
-                                lblF.Hide();
-                                lblQ.Hide();
-                                txtbR.Hide();
-                                pictureBox3.Hide();
-
-                                pictureBox2.Show();
-                                pictureBox2.Image = Properties.Resources.duofeliz;
-                                btnM.Show();
-                                btnR.Show();
-                                pgb.Location = new Point(0, 0);
-                            }
-                            break;
+                            p = P.Next(5);
                         }
+                        {
+                            ji[p] = p + 1;
+                            switch (D)
+                            {
+                                case 1:
+                                    lblF.Text = eng.Pergunta1[p];
+                                    break;
+                                case 2:
+                                    lblF.Text = eng.Pergunta2[p];
+                                    break;
+                                case 3:
+                                    lblF.Text = eng.Pergunta3[p];
+                                    break;
+
+                            }
+                            pictureBox3.Show();
+                            Q = p;
+                        }
+                        break;
+                    }
+                    if (pgb.Value == 100)
+                    {
+                        lblF.Hide();
+                        lblQ.Hide();
+                        txtbR.Hide();
+                        pictureBox3.Hide();
+
+                        pictureBox2.Show();
+                        pictureBox2.Image = Properties.Resources.duofeliz;
+                        btnM.Show();
+                        btnR.Show();
+                        pgb.Location = new Point(0, 0);
+                    }
                 }
             } // Configuração em Ingles
-            else if (cfg.It)
+            else if (L == 2)
             {
-                switch (cfg.Dificuldade) // Dificuldade -> Case 1 - Facil |  Case 2 - Medio | Case 3 - Dificil
+                while (pgb.Value != 100)
                 {
-                    case 1:
+                    int Mg = M.Next(1, 3);
+                    int p = P.Next(5);
+                    ex.Text = "\n" + jf[0] + jf[1] + jf[2] + jf[3] + jf[4];
+                    if (Mg == 1)
+                    {
+                        f = true;
+                        lblQ.Text = "Traduza a frase";
+                        pictureBox3.Hide();
+                        while (jf.Contains(p + 1))
                         {
-                            while (pgb.Value != 100)
-                            {
-                                int Mg = M.Next(1, 3);
-                                int p = P.Next(5);
-                                ex.Text = "\n" + jf[0] + jf[1] + jf[2] + jf[3] + jf[4];
-                                if (Mg == 1)
-                                {
-                                    f = true;
-                                    pictureBox3.Hide();
-                                    while (jf.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        jf[p] = p + 1;
-                                        lblF.Show();
-                                        lblF.Text = per.Itpergunta1[p];
-                                        Q = p;
-                                    }
-                                    break;
-                                }
-                                if (Mg == 2)
-                                {
-                                    f = false;
-                                    lblF.Hide();
-                                    while (ji.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        ji[p] = p + 1;
-                                        pictureBox3.Show();
-                                        pictureBox3.Image = per.ImagemIT1[p];
-                                        Q = p;
-                                    }
-                                    break;
-                                }
-                            }
-                            if (pgb.Value == 100)
-                            {
-                                lblF.Hide();
-                                lblQ.Hide();
-                                txtbR.Hide();
-                                pictureBox3.Hide();
-
-                                pictureBox2.Show();
-                                pictureBox2.Image = Properties.Resources.duofeliz;
-                                btnM.Show();
-                                btnR.Show();
-                                pgb.Location = new Point(0, 0);
-                            }
-                            break;
+                            p = P.Next(5);
                         }
-                    case 2:
                         {
-                            while (pgb.Value != 100)
+                            jf[p] = p + 1;
+                            lblF.Show();
+                            switch (D)
                             {
-                                int Mg = M.Next(1, 3);
-                                int p = P.Next(5);
-                                ex.Text += "\n" + jf[0] + jf[1] + jf[2] + jf[3] + jf[4];
-                                ex.Text += "\n" + Mg;
-                                if (Mg == 1)
-                                {
-                                    f = true;
-                                    pictureBox3.Hide();
-                                    while (jf.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        jf[p] = p + 1;
-                                        lblF.Show();
-                                        lblF.Text = per.Itpergunta2[p];
-                                        Q = p;
-                                    }
+                                case 1:
+                                    lblF.Text = it.pergunta1[p];
                                     break;
-                                }
-                                if (Mg == 2)
-                                {
-                                    f = false;
-                                    lblF.Hide();
-                                    while (ji.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        ji[p] = p + 1;
-                                        pictureBox3.Show();
-                                        pictureBox3.Image = per.ImagemIT2[p];
-                                        Q = p;
-                                    }
+                                case 2:
+                                    lblF.Text = it.pergunta2[p];
                                     break;
-                                }
-                            }
-                            if (pgb.Value == 100)
-                            {
-                                lblF.Hide();
-                                lblQ.Hide();
-                                txtbR.Hide();
-                                pictureBox3.Hide();
+                                case 3:
+                                    lblF.Text = it.pergunta3[p];
+                                    break;
 
-                                pictureBox2.Show();
-                                pictureBox2.Image = Properties.Resources.duofeliz;
-                                btnM.Show();
-                                btnR.Show();
-                                pgb.Location = new Point(0, 0);
                             }
-                            break;
+
+                            Q = p;
                         }
-                    case 3:
+                        break;
+                    }
+                    if (Mg == 2)
+                    {
+                        f = false;
+                        lblF.Hide();
+                        lblQ.Text = "Escreva o nome do animal";
+                        while (ji.Contains(p + 1))
                         {
-                            while (pgb.Value != 100)
-                            {
-                                int Mg = M.Next(1, 3);
-                                int p = P.Next(5);
-                                ex.Text = "\n" + jf[0] + jf[1] + jf[2] + jf[3] + jf[4];
-                                if (Mg == 1)
-                                {
-                                    f = true;
-                                    pictureBox3.Hide();
-                                    while (jf.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        jf[p] = p + 1;
-                                        lblF.Show();
-                                        lblF.Text = per.Itpergunta3[p];
-                                        Q = p;
-                                    }
-                                    break;
-                                }
-                                if (Mg == 2)
-                                {
-                                    f = false;
-                                    lblF.Hide();
-                                    while (ji.Contains(p + 1))
-                                    {
-                                        p = P.Next(5);
-                                    }
-                                    {
-                                        ji[p] = p + 1;
-                                        pictureBox3.Show();
-                                        pictureBox3.Image = per.ImagemIT3[p];
-                                        Q = p;
-                                    }
-                                    break;
-                                }
-                            }
-                            if (pgb.Value == 100)
-                            {
-                                lblF.Hide();
-                                lblQ.Hide();
-                                txtbR.Hide();
-                                pictureBox3.Hide();
-
-                                pictureBox2.Show();
-                                pictureBox2.Image = Properties.Resources.duofeliz;
-                                btnM.Show();
-                                btnR.Show();
-                                pgb.Location = new Point(0, 0);
-                            }
-                            break;
+                            p = P.Next(5);
                         }
+                        {
+                            ji[p] = p + 1;
+                            switch (D)
+                            {
+                                case 1:
+                                    pictureBox3.Image = it.Imagem1[p];
+                                    break;
+                                case 2:
+                                    pictureBox3.Image = it.Imagem2[p];
+                                    break;
+                                case 3:
+                                    pictureBox3.Image = it.Imagem3[p];
+                                    break;
+
+                            }
+                            Q = p;
+                        }
+                        pictureBox3.Show();
+                        break;
+                    }
+                if (pgb.Value == 100)
+                {
+                    lblF.Hide();
+                    lblQ.Hide();
+                    txtbR.Hide();
+                    pictureBox3.Hide();
+
+                    pictureBox2.Show();
+                    pictureBox2.Image = Properties.Resources.duofeliz;
+                    btnM.Show();
+                    btnR.Show();
+                    pgb.Location = new Point(0, 0);
+                }
                 }
             } // Configuração em Italiano
 
 
         } // Script do jogo
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -393,7 +214,7 @@ namespace Trilinguo
             if (DSelecionado())
             {
                 timer1.Start();
-                Jogar();
+                Jogar(cfg.Dificuldade, cfg.Lingua);
             }
             else
             {
@@ -414,6 +235,7 @@ namespace Trilinguo
                 btnR.Hide();
                 btnM.Hide();
 
+                btnE.Show();
                 lblF.Show();
                 lblQ.Show();
                 txtbR.Show();
@@ -439,16 +261,23 @@ namespace Trilinguo
 
         private void btnT_Click(object sender, EventArgs e)
         {
-            ex.Text = "Lingua: " + cfg.It + cfg.Us + "\n Dificuldade: " + cfg.Dificuldade;
+            ex.Text = "Lingua: " + cfg.Lingua + "\n Dificuldade: " + cfg.Dificuldade;
         } // Controle
 
         private void btnE_Click(object sender, EventArgs e)
+        {
+            EnviarResposta(cfg.Lingua,cfg.Dificuldade);
+            
+        } // Script das respostas
+
+        private void EnviarResposta(int L, int D)
         {
             if (pgb.Value == 100)
             {
                 lblF.Hide();
                 lblQ.Hide();
                 txtbR.Hide();
+                btnE.Hide();
 
                 pictureBox2.Show();
                 pictureBox2.Image = Properties.Resources.duofeliz;
@@ -456,219 +285,147 @@ namespace Trilinguo
                 btnR.Show();
                 pgb.Location = new Point(0, 0);
             }
-            else if (cfg.Us)
+            else if (L == 1)
             {
+                bool x = false;
                 if (f)
                 {
-                    switch (cfg.Dificuldade)
+                    switch (D)
                     {
                         case 1:
-                            {
-                                if (txtbR.Text.Equals(per.Resposta[Q], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text.Equals(eng.Resposta1[Q], StringComparison.OrdinalIgnoreCase))
+                                x = true;
+                            break;
                         case 2:
-                            {
-                                if (txtbR.Text.Equals(per.Resposta2[Q], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text.Equals(eng.Resposta2[Q], StringComparison.OrdinalIgnoreCase))
+                                x = true;
+                            break;
                         case 3:
-                            {
-                                if (txtbR.Text.Equals(per.Resposta3[Q], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text.Equals(eng.Resposta3[Q], StringComparison.OrdinalIgnoreCase))
+                                x = true;
+                            break;
+
+                    }
+                    if (x == true)
+                    {
+                        pgb.Value += 20;
+                        txtbR.Text = "";
+                        Jogar(D, L);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Resposta errada.");
                     }
                 }
                 else
                 {
-                    switch (cfg.Dificuldade)
+                    switch (D)
                     {
                         case 1:
-                            {
-                                if (txtbR.Text == per.ITRespostaimg1[Q])
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text == it.Respostaimg1[Q])
+                                x = true;
+                            break;
                         case 2:
-                            {
-                                if (txtbR.Text == per.Resposta2[Q])
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text == it.Respostaimg2[Q])
+                                x = true;
+                            break;
                         case 3:
-                            {
-                                if (txtbR.Text == per.Resposta3[Q])
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text == it.Respostaimg3[Q])
+                                x = true;
+                            break;
                     }
-                }
+                    if (x == true)
+                    {
+                        pgb.Value += 20;
+                        txtbR.Text = "";
+                        Jogar(D, L);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Resposta errada.");
+                    }
+                }   
             } // Resposta em Ingles
-            else if (cfg.It)
+            else if (L == 2)
             {
+                bool x = false;
                 if (f)
                 {
-                    switch (cfg.Dificuldade)
+                    switch (D)
                     {
                         case 1:
-                            {
-                                if (txtbR.Text.Equals(per.Itresposta1[Q], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text.Equals(it.resposta1[Q], StringComparison.OrdinalIgnoreCase))
+                                x = true;
+                            break;
                         case 2:
-                            {
-                                if (txtbR.Text.Equals(per.Itresposta2[Q], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text.Equals(it.resposta2[Q], StringComparison.OrdinalIgnoreCase))
+                                x = true;
+                            break;
                         case 3:
-                            {
-                                if (txtbR.Text.Equals(per.Itresposta3[Q], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text.Equals(it.resposta3[Q], StringComparison.OrdinalIgnoreCase))
+                                x = true;
+                            break;
+
+                    }
+                    if (x == true)
+                    {
+                        pgb.Value += 20;
+                        txtbR.Text = "";
+                        Jogar(D, L);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Resposta errada.");
                     }
                 }
                 else
                 {
-                    switch (cfg.Dificuldade)
+                    switch (D)
                     {
                         case 1:
-                            {
-                                if (txtbR.Text.Equals(per.ITRespostaimg1[Q], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text == it.Respostaimg1[Q])
+                                x = true;
+                            break;
                         case 2:
-                            {
-                                if (txtbR.Text.Equals(per.ITRespostaimg2[Q], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text == it.Respostaimg2[Q])
+                                x = true;
+                            break;
                         case 3:
-                            {
-                                if (txtbR.Text.Equals(per.ITRespostaimg3[Q], StringComparison.OrdinalIgnoreCase))
-                                {
-                                    pgb.Value += 20;
-                                    txtbR.Text = "";
-                                    Jogar();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Resposta errado");
-                                }
-                                break;
-                            }
+                            if (txtbR.Text == it.Respostaimg3[Q])
+                                x = true;
+                            break;
+                    }
+                    if (x == true)
+                    {
+                        pgb.Value += 20;
+                        txtbR.Text = "";
+                        Jogar(D, L);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Resposta errada.");
                     }
                 }
             } // Resposta em Italiano
 
-        } // Script das respostas
-
+        }
         private void btnR_Click(object sender, EventArgs e)
         {
-            pictureBox3.Hide();
+            timer1.Start();
+            resetJogo();
+            Jogar(cfg.Dificuldade, cfg.Lingua);
+        } // Restart
+
+        private void resetJogo()
+        {
             pgb.Value = 0;
             Array.Clear(jf, 0, jf.Length);
             Array.Clear(ji, 0, ji.Length);
-            timer1.Start();
-            Jogar();
-        } // Restart
+        }
 
         private void btnM_Click(object sender, EventArgs e)
         {
+            resetJogo();
             timer3.Start();
         } // Voltar para o Menu
 

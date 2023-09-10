@@ -9,13 +9,11 @@ namespace Trilinguo
     internal class cfg
     {
         private int Cod;
-        private bool us;
-        private bool it;
+        private int lingua;
         private int dificuldade;
 
         public int Cod1 { get => Cod; set => Cod = value; }
-        public bool Us { get => us; set => us = value; }
-        public bool It { get => it; set => it = value; }
         public int Dificuldade { get => dificuldade; set => dificuldade = value; }
+        public int Lingua { get => lingua; set => lingua = value; }
     }
 }
